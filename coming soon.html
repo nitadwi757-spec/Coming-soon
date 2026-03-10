@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golden Crust – Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse 120% 80% at 100% 100%, #d4b96a 0%, transparent 55%),
+        radial-gradient(ellipse 100% 70% at 0% 100%, #d4b86855 0%, transparent 50%),
+        #f5ede0;
+      overflow: hidden;
+    }
+
+    .corner {
+      position: fixed;
+      width: 52px; height: 52px;
+      pointer-events: none;
+    }
+    .corner::before, .corner::after {
+      content: '';
+      position: absolute;
+      background: #c9a84c;
+    }
+    .corner::before { width: 1px; height: 100%; }
+    .corner::after  { width: 100%; height: 1px; }
+
+    .corner.tl { top: 28px; left: 28px; }
+    .corner.tl::before { top:0; left:0; }
+    .corner.tl::after  { top:0; left:0; }
+
+    .corner.tr { top: 28px; right: 28px; }
+    .corner.tr::before { top:0; left:auto; right:0; }
+    .corner.tr::after  { top:0; left:auto; right:0; }
+
+    .corner.bl { bottom: 28px; left: 28px; }
+    .corner.bl::before { top:auto; bottom:0; left:0; }
+    .corner.bl::after  { top:auto; bottom:0; left:0; }
+
+    .corner.br { bottom: 28px; right: 28px; }
+    .corner.br::before { top:auto; bottom:0; left:auto; right:0; }
+    .corner.br::after  { top:auto; bottom:0; left:auto; right:0; }
+
+    .card {
+      text-align: center;
+      padding: 60px 80px 50px;
+      max-width: 860px;
+      width: 90vw;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .seal {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 1px solid #c9a84c;
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .seal::before {
+      content: '';
+      position: absolute; inset: 4px;
+      border-radius: 50%;
+      border: .5px solid rgba(201,168,76,.35);
+    }
+    .seal-text {
+      font-family: 'Cinzel', serif;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #7a5c1e;
+      letter-spacing: .12em;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3.2rem, 9vw, 6rem);
+      font-weight: 400;
+      color: #2c1a0e;
+      letter-spacing: .06em;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .artisan {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.65rem, 1.5vw, .82rem);
+      font-weight: 400;
+      letter-spacing: .5em;
+      color: #c9a84c;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(.95rem, 2vw, 1.2rem);
+      color: #5a3e25;
+      letter-spacing: .08em;
+      margin-bottom: 40px;
+    }
+
+    .cs-btn {
+      display: inline-block;
+      border: 1px solid #c9a84c;
+      padding: 16px 54px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.6rem, 1.4vw, .78rem);
+      letter-spacing: .5em;
+      color: #2c1a0e;
+      text-transform: uppercase;
+      margin-bottom: 44px;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .orn-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #c9a84c;
+      opacity: .7;
+    }
+    .orn-icon {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+    }
+    .orn-icon .stem {
+      width: 1.5px; height: 14px;
+      background: #c9a84c;
+      border-radius: 2px;
+    }
+    .orn-icon .leaf {
+      width: 10px; height: 1.5px;
+      background: #c9a84c;
+      border-radius: 2px;
+      margin-top: -12px;
+    }
+    .orn-icon .leaf2 {
+      width: 7px; height: 1.5px;
+      background: #c9a84c;
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+    .orn-icon .leaf3 {
+      width: 4px; height: 1.5px;
+      background: #c9a84c;
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+
+    .bottom-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.48rem, 1.1vw, .62rem);
+      letter-spacing: .45em;
+      color: #a0865a;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform: translateY(20px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="card">
+
+    <div class="seal">
+      <div class="seal-text">GC</div>
+    </div>
+
+    <h1>Golden<br>Crust</h1>
+
+    <div class="artisan">Artisan Bakery</div>
+
+    <p class="tagline">Crafted with passion · Baked to perfection</p>
+
+    <div class="cs-btn">Coming Soon</div>
+
+    <div class="ornament">
+      <div class="orn-dot"></div>
+      <div class="orn-icon">
+        <div class="stem"></div>
+        <div class="leaf"></div>
+        <div class="leaf2"></div>
+        <div class="leaf3"></div>
+      </div>
+      <div class="orn-dot"></div>
+    </div>
+
+    <p class="bottom-text">Something Extraordinary Is Being Prepared</p>
+
+  </div>
+
+</body>
+</html>
